@@ -18,8 +18,43 @@ se va afișa pe ecran:
 */
 
 #include <stdio.h>
-
+#define MAX 100
 int main()
 {
+    int n, m;
+    scanf("%d %d", &n, &m);
+    int a[MAX][MAX], b[MAX][MAX];
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            scanf("%d", &a[i][j]);
+
+
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < m; j++)
+            scanf("%d", &b[i][j]);
+
+
+    int found = 0;
+    for (int i = 0; i <= n - m; i++)
+        for (int j = 0; j <= n - m; j++)
+        {
+            int match = 1;
+            for (int x = 0; x < m; x++)
+                for (int y = 0; y < m; y++)
+                    if (a[i + x][j + y] != b[x][y])
+                    {
+                        match = 0;
+                        break;
+                    }
+            if (match)
+            {
+                printf("(%d,%d) ", i, j);
+                found = 1;
+            }
+        }
+    
+    if (!found)
+        printf("Nu apare");
+    
     return 0;
 }
