@@ -6,19 +6,37 @@ Se vor utiliza pointeri.
 */
 
 #include <stdio.h>
+#define MAX 21
 
 int main()
 {
     int m, n;
-    int A[11][11];
+    int A[MAX][MAX];
+
     scanf("%d %d", &m, &n);
+
+    int (*pA)[MAX] = A;   // pointer la matrice
+
+    int val = 1;
 
     for (int i = 0; i < m; i++)
     {
         for (int j = 0; j < n; j++)
         {
-            scanf("%d", &A[i][j]);
+            *(*(pA + i) + j) = val;
+            val++;
         }
     }
-    
+
+    // afișare matrice
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            printf("%d ", *(*(pA + i) + j));
+        }
+        printf("\n");
+    }
+
+    return 0;
 }
